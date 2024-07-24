@@ -56,7 +56,7 @@ const updateBooking = async (req, res) => {
   try {
     await pool.query(
       "UPDATE bookings SET id = $1, member_id = $2, class_id = $3, status = $4"[
-        (id, member_id, class_id, book_date, status)
+        (id, member_id, class_id, status)
       ]
     );
     res.status(200).json({ message: "Booking updated successfully" });
