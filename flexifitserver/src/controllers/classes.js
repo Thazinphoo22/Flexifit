@@ -2,6 +2,7 @@ const { pool } = require("../db/db");
 
 const createClass = async (req, res) => {
   const {
+    id,
     name,
     description,
     date,
@@ -10,12 +11,12 @@ const createClass = async (req, res) => {
     instructor,
     session_duration,
     class_size,
-    fitness_studio_id,
   } = req.body;
   try {
     await pool.query(
-      "INSERT INTO class (name, description, date, time, location, instructor, session_duration, class_size, fitness_studio_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+      "INSERT INTO class (id, name, description, date, time, location, instructor, session_duration, class_size) VALUES ($2, $3, $4, $5, $6, $7, $8, $9)",
       [
+        id,
         name,
         description,
         date,
@@ -24,7 +25,6 @@ const createClass = async (req, res) => {
         instructor,
         session_duration,
         class_size,
-        fitness_studio_id,
       ]
     );
     res.status(201).json({ message: "Class created" });
@@ -66,8 +66,9 @@ const updateClass = async (req, res) => {
   } = req.body;
   try {
     await pool.query(
-      "UPDATE class SET name = $1, description = $2, date = $3, time = $4, location = $5, instructor = $6, session_duration = $7, class_size = $8 WHERE id = $9",
+      "UPDATE class SET id = $1, name = $2, description = $3, date = $4, time = $5, location = $6, instructor = $7, session_duration = $8, class_size = $9",
       [
+        id,
         name,
         description,
         date,
@@ -76,7 +77,6 @@ const updateClass = async (req, res) => {
         instructor,
         session_duration,
         class_size,
-        id,
       ]
     );
     res.json({ message: "Class updated" });
