@@ -11,13 +11,12 @@ const {
   validateRegistrationData,
   validateLoginData,
 } = require("../validators/auth");
-const checkErrors = require("../validators/checkErrors");
 const { auth, fitness_studioAuth } = require("../middleware/auth");
 
-router.get("/", getAllClasses);
-router.get("/:id", getClassById);
-router.put("/", createClass);
-router.patch("/", updateClass);
-router.delete("/", deleteClass);
+router.get("/", auth, getAllClasses);
+router.get("/:id", auth, getClassById);
+router.put("/", fitness_studioAuth, createClass);
+router.patch("/", fitness_studioAuth, updateClass);
+router.delete("/", fitness_studioAuth, deleteClass);
 
 module.exports = router;
