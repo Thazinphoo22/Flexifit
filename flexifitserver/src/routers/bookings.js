@@ -11,13 +11,12 @@ const {
   validateRegistrationData,
   validateLoginData,
 } = require("../validators/auth");
-const checkErrors = require("../validators/checkErrors");
 const { auth, memberAuth } = require("../middleware/auth");
 
-router.get("/", getBookings);
-router.get("/:id", getBookingById);
-router.put("/", createBooking);
-router.patch("/", updateBooking);
-router.delete("/", deleteBooking);
+router.get("/", auth, getBookings);
+router.get("/:id", auth, getBookingById);
+router.put("/", memberAuth, createBooking);
+router.patch("/", memberAuth, updateBooking);
+router.delete("/", memberAuth, deleteBooking);
 
 module.exports = router;
