@@ -9,8 +9,6 @@ const members = require("./src/routers/members");
 const classes = require("./src/routers/classes");
 const bookings = require("./src/routers/bookings");
 const auth = require("./src/routers/auth");
-const pool = require("./src/db/db");
-const path = require("path");
 // const connectDB = require("./src/db/db");
 
 const limiter = rateLimit({
