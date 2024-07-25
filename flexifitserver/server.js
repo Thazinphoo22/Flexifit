@@ -4,22 +4,23 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-const employers = require("./src/routers/employers");
-const applicants = require("./src/routers/applicants");
-const jobList = require("./src/routers/jobList");
-const roles = require("./src/routers/roles");
+const fitnessStudios = require("./src/routers/fitnessStudios");
+const members = require("./src/routers/members");
+const classes = require("./src/routers/classes");
+const bookings = require("./src/routers/bookings");
 const auth = require("./src/routers/auth");
-
-const connectDB = require("./src/db/db");
+const pool = require("./src/db/db");
+const path = require("path");
+// const connectDB = require("./src/db/db");
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 1000,
-  standardHeaders: true,
-  legacyHeaders: false,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 1000, // limit each IP to 1000 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-connectDB();
+// connectDB();
 
 const app = express();
 
@@ -29,11 +30,10 @@ app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", jobList);
-
-app.use("/employers", employers);
-app.use("/applicants", applicants);
-app.use("/roles", roles);
+app.use("/fitness_studios", fitnessStudios);
+app.use("/members", members);
+app.use("/classes", classes);
+app.use("/bookings", bookings);
 app.use("/auth", auth);
 
 const PORT = process.env.PORT || 5002;

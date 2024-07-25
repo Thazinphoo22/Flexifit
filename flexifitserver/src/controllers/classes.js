@@ -2,7 +2,6 @@ const { pool } = require("../db/db");
 
 const createClass = async (req, res) => {
   const {
-    id,
     name,
     description,
     date,
@@ -14,9 +13,8 @@ const createClass = async (req, res) => {
   } = req.body;
   try {
     await pool.query(
-      "INSERT INTO class (id, name, description, date, time, location, instructor, session_duration, class_size) VALUES ($2, $3, $4, $5, $6, $7, $8, $9)",
+      "INSERT INTO classes (name, description, date, time, location, instructor, session_duration, class_size) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [
-        id,
         name,
         description,
         date,
@@ -45,7 +43,9 @@ const getAllClasses = async (req, res) => {
 const getClassById = async (req, res) => {
   const { id } = req.body;
   try {
-    const result = await pool.query("SELECT * FROM class WHERE id = $1", [id]);
+    const result = await pool.query("SELECT * FROM classes WHERE id = $1", [
+      id,
+    ]);
     res.json(result.rows[0]);
   } catch (error) {
     res.status(500).json({ error: "Error retrieving class by id" });
@@ -66,9 +66,8 @@ const updateClass = async (req, res) => {
   } = req.body;
   try {
     await pool.query(
-      "UPDATE class SET id = $1, name = $2, description = $3, date = $4, time = $5, location = $6, instructor = $7, session_duration = $8, class_size = $9",
+      "UPDATE classes SET name = $1, description = $2, date = $3, time = $4, location = $5, instructor = $6, session_duration = $7, class_size = $8 where id =$9",
       [
-        id,
         name,
         description,
         date,
@@ -77,6 +76,7 @@ const updateClass = async (req, res) => {
         instructor,
         session_duration,
         class_size,
+        id,
       ]
     );
     res.json({ message: "Class updated" });
@@ -88,7 +88,7 @@ const updateClass = async (req, res) => {
 const deleteClass = async (req, res) => {
   const { id } = req.body;
   try {
-    await pool.query("DELETE FROM class WHERE id = $1", [id]);
+    await pool.query("DELETE FROM classes WHERE id = $1", [id]);
     res.json({ message: "Class deleted" });
   } catch (error) {
     res.status(500).json({ error: "Error deleting class" });

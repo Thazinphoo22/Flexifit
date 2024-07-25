@@ -38,11 +38,11 @@ const getBookingById = async (req, res) => {
 };
 
 const createBooking = async (req, res) => {
-  const { id, member_id, class_id, status } = req.body;
+  const { member_id, class_id } = req.body;
   try {
     await pool.query(
-      "INSERT INTO bookings (id, member_id, class_id, status) VALUES ($1, $2, $3, $4)",
-      [id, member_id, class_id, status]
+      "INSERT INTO bookings ( member_id, class_id) VALUES ($1, $2)",
+      [member_id, class_id]
     );
     res.status(201).json({ message: "Booking created successfully" });
   } catch (err) {
@@ -51,12 +51,11 @@ const createBooking = async (req, res) => {
 };
 
 const updateBooking = async (req, res) => {
-  const { id } = req.body;
-  const { member_id, class_id, status } = req.body;
+  const { id, member_id, class_id, status } = req.body;
   try {
     await pool.query(
-      "UPDATE bookings SET id = $1, member_id = $2, class_id = $3, status = $4"[
-        (id, member_id, class_id, status)
+      "UPDATE bookings SET member_id = $1, class_id = 2, status =$3 WHERE id = $4"[
+        (member_id, class_id, status, id)
       ]
     );
     res.status(200).json({ message: "Booking updated successfully" });
