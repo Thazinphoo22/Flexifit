@@ -25,6 +25,8 @@ function App() {
           setRole,
           loggedInUserRole,
           setLoggedInUserRole,
+          email,
+          setEmail,
         }}
       >
         {!accessToken && showLogin && (

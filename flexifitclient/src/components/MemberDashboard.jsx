@@ -3,11 +3,12 @@ import UserContext from "../context/user";
 
 const MemberDashboard = ({ email }) => {
   const userCtx = useContext(UserContext);
+  const username = email.split("@")[0];
 
   return (
     <div>
       <nav>
-        <h2>{email}'s Dashboard</h2>
+        <h2>{username}'s Dashboard</h2>
         <ul>
           <li>Member's Dashboard</li>
           <li>Upcoming Classes</li>
@@ -15,8 +16,6 @@ const MemberDashboard = ({ email }) => {
           <li onClick={() => userCtx.setAccessToken("")}>Log Out</li>
         </ul>
       </nav>
-      {/* <UpcomingClasses />
-      <BookingHistory /> */}
     </div>
   );
 };

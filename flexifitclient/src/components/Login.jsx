@@ -9,7 +9,7 @@ const Login = (props) => {
   const userCtx = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("member");
 
   const { isError, error, data, refetch } = useQuery({
     queryKey: ["login"],
