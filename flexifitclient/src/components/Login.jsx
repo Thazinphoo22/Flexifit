@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import { jwtDecode } from "jwt-decode";
@@ -40,15 +40,11 @@ const Login = (props) => {
     props.setEmail(email);
   }, [email]);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    refetch();
-  };
-
   return (
     <div>
       <h1>FlexiFit</h1>
-      <form onSubmit={handleLogin}>
+      {isError && <p>{error}</p>}
+      <div>
         <label>
           Role:
           <select value={role} onChange={(e) => setRole(e.target.value)}>
@@ -72,12 +68,11 @@ const Login = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button type="submit">Log In</button>
-      </form>
+        <button onClick={refetch}>Login</button>
+      </div>
       <button onClick={() => props.setShowLogin(false)}>
         Not have an account yet? Register
       </button>
-      {isError && <p>{error}</p>}
     </div>
   );
 };
