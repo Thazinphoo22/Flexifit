@@ -52,6 +52,19 @@ const getClassById = async (req, res) => {
   }
 };
 
+const getClassByLocation = async (req, res) => {
+  const { location } = req.body;
+  try {
+    const result = await pool.query(
+      "SELECT * FROM classes WHERE location ILIKE $1",
+      [`%${location}%`]
+    );
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: "Error retrieving classes by location" });
+  }
+};
+
 const updateClass = async (req, res) => {
   const { id } = req.body;
   const {
@@ -99,6 +112,7 @@ module.exports = {
   createClass,
   getAllClasses,
   getClassById,
+  getClassByLocation,
   updateClass,
   deleteClass,
 };

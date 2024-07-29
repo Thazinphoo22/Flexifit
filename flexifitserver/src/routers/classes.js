@@ -6,6 +6,7 @@ const {
   createClass,
   updateClass,
   deleteClass,
+  getClassByLocation,
 } = require("../controllers/classes");
 const {
   validateRegistrationData,
@@ -15,6 +16,7 @@ const { auth, fitness_studioAuth } = require("../middleware/auth");
 
 router.get("/", auth, getAllClasses);
 router.get("/:id", auth, getClassById);
+router.post("/location", auth, getClassByLocation);
 router.put("/", fitness_studioAuth, createClass);
 router.patch("/", fitness_studioAuth, updateClass);
 router.delete("/", fitness_studioAuth, deleteClass);
