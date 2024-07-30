@@ -14,6 +14,8 @@ function App() {
   const [role, setRole] = useState("");
   const [loggedInUserRole, setLoggedInUserRole] = useState("");
   const [email, setEmail] = useState("");
+  const [memberId, setMemberId] = useState(null);
+  const [fitness_studioId, setFitness_studioId] = useState(null);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -27,6 +29,10 @@ function App() {
           setLoggedInUserRole,
           email,
           setEmail,
+          memberId,
+          setMemberId,
+          fitness_studioId,
+          setFitness_studioId,
         }}
       >
         {!accessToken && showLogin && (

@@ -54,7 +54,7 @@ const getClassById = async (req, res) => {
 
 const getClassByLocation = async (req, res) => {
   const { location } = req.body;
-  console.log(1);
+  //   console.log(1);
   try {
     const result = await pool.query(
       "SELECT * FROM classes WHERE location ILIKE $1",

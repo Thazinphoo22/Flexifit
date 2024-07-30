@@ -10,6 +10,7 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("member");
+  [];
 
   const { isError, error, data, refetch } = useQuery({
     queryKey: ["login"],
@@ -33,6 +34,11 @@ const Login = (props) => {
       const decoded = jwtDecode(data.access);
       userCtx.setRole(decoded.role);
       userCtx.setLoggedInUserRole(decoded.role);
+      if (decoded.role === "member") {
+        userCtx.setMemberId(decoded.id);
+      } else if (decoded.role === "fitness_studio") {
+        userCtx.setFitness_studioId(decoded.id);
+      }
     }
   }, [data]);
 

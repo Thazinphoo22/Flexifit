@@ -22,7 +22,11 @@ const UpcomingClasses = () => {
     }
   };
 
-  const fetchClassesByLocation = async () => {
+  useEffect(() => {
+    fetchAllClasses();
+  }, []);
+
+  const fetchClassesByLocation = async (location) => {
     try {
       const data = await usingFetch(
         "/api/classes/location",
@@ -36,24 +40,42 @@ const UpcomingClasses = () => {
     }
   };
 
-  useEffect(() => {
-    fetchAllClasses();
-  }, [usingFetch]);
-
   const handleSearch = () => {
-    fetchClassesByLocation();
+    if (location.trim() !== "") {
+      fetchClassesByLocation(location);
+    }
   };
 
+  // const handleBookClass = async (memberId, classId) => {
+  //   console.log(memberId);
+  //   try {
+  //     await usingFetch(
+  //       "/api/bookings",
+  //       "PUT",
+  //       { member_id: memberId, class_id: classId },
+  //       userCtx.accessToken
+  //     );
+  //     alert("Class booked successfully!");
+  //     fetchAllClasses();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const handleBookClass = async (classId) => {
+    const memberId = userCtx.memberId;
+    if (!memberId) {
+      console.error("Member ID is not available");
+      return;
+    }
     try {
       await usingFetch(
         "/api/bookings",
         "PUT",
-        { class_id: classId },
-        undefined,
+        { member_id: memberId, class_id: classId },
         userCtx.accessToken
       );
       alert("Class booked successfully!");
+      fetchAllClasses(); // Fetch updated class list
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +96,6 @@ const UpcomingClasses = () => {
         </label>
         <button onClick={handleSearch}>Search</button>
       </div>
-
       <div>
         <button onClick={fetchAllClasses}>Show All</button>
       </div>
