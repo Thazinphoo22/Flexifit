@@ -14,11 +14,12 @@ const {
 } = require("../validators/auth");
 const { auth, fitness_studioAuth } = require("../middleware/auth");
 
-router.get("/", auth, getAllClasses);
-router.get("/:id", auth, getClassById);
-router.post("/location", auth, getClassByLocation);
-router.put("/", fitness_studioAuth, createClass);
-router.patch("/", fitness_studioAuth, updateClass);
-router.delete("/", fitness_studioAuth, deleteClass);
+router.get("/classes", auth, getAllClasses);
+router.get("/classes/:id", auth, getClassById);
+router.post("/classes/location", getClassByLocation);
+// router.post("/classes/location", (req, res) => res.json({ msg: "return" }));
+router.put("/classes", fitness_studioAuth, createClass);
+router.patch("/classes", fitness_studioAuth, updateClass);
+router.delete("/classes", fitness_studioAuth, deleteClass);
 
 module.exports = router;

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import UserContext from "../context/user";
 
-const StudioDashboard = ({ email }) => {
+const StudioDashboard = (props) => {
   const userCtx = useContext(UserContext);
-  const username = email.split("@")[0];
+  const username = props.email.split("@")[0];
 
   return (
     <div>
@@ -12,7 +12,7 @@ const StudioDashboard = ({ email }) => {
         <ul>
           <li>Studio's Dashboard</li>
           <li>Available Classes</li>
-          <li onClick={() => userCtx.setAccessToken("")}>Log Out</li>
+          <li onClick={() => userCtx.handleLogout()}>Log Out</li>
         </ul>
       </nav>
     </div>

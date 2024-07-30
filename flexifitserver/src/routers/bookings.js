@@ -13,10 +13,10 @@ const {
 } = require("../validators/auth");
 const { auth, memberAuth } = require("../middleware/auth");
 
-router.get("/", auth, getBookings);
-router.get("/:id", auth, getBookingById);
-router.put("/", memberAuth, createBooking);
-router.patch("/", memberAuth, updateBooking);
-router.delete("/", memberAuth, deleteBooking);
+router.get("/bookings", auth, getBookings);
+router.get("/bookings/:id", auth, getBookingById);
+router.put("/bookings", memberAuth, createBooking);
+router.patch("/bookings", memberAuth, updateBooking);
+router.delete("/bookings", memberAuth, deleteBooking);
 
 module.exports = router;

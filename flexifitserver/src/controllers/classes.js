@@ -54,6 +54,7 @@ const getClassById = async (req, res) => {
 
 const getClassByLocation = async (req, res) => {
   const { location } = req.body;
+  console.log(1);
   try {
     const result = await pool.query(
       "SELECT * FROM classes WHERE location ILIKE $1",
@@ -101,7 +102,7 @@ const updateClass = async (req, res) => {
 const deleteClass = async (req, res) => {
   const { id } = req.body;
   try {
-    await pool.query("DELETE FROM classes WHERE id = $1", [id]);
+    await pool.query("DELETE FROM classes WHERE id = $1 ", [id]);
     res.json({ message: "Class deleted" });
   } catch (error) {
     res.status(500).json({ error: "Error deleting class" });

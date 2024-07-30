@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UserContext from "./context/user";
 import Login from "./components/Login";
 import Registration from "./components/Registration";

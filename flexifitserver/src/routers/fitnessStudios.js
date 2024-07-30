@@ -13,10 +13,10 @@ const {
 } = require("../validators/auth");
 const { auth } = require("../middleware/auth");
 
-router.get("/", auth, getFitnessStudios);
-router.get("/:id", auth, getFitnessStudioById);
-router.put("/", auth, createFitnessStudio);
-router.patch("/", auth, updateFitnessStudio);
-router.delete("/", auth, deleteFitnessStudio);
+router.get("/fitness_studios", auth, getFitnessStudios);
+router.get("/fitness_studios/:id", auth, getFitnessStudioById);
+router.put("/fitness_studios", auth, createFitnessStudio);
+router.patch("/fitness_studios", auth, updateFitnessStudio);
+router.delete("/fitness_studios", auth, deleteFitnessStudio);
 
 module.exports = router;

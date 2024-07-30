@@ -3,18 +3,18 @@ const { pool } = require("../db/db");
 const getBookings = async (req, res) => {
   try {
     const result = await pool.query(`
-    SELECT 
-      b.id, 
-      m.name AS member_name, 
-      c.name AS class_name, 
-      c.date AS class_date, 
-      c.time AS class_time, 
+    SELECT
+      b.id,
+      m.name AS member_name,
+      c.name AS class_name,
+      c.date AS class_date,
+      c.time AS class_time,
       c.location AS class_location,
       c.instructor AS class_instructor,
       c.session_duration AS class_session_duration,
       c.class_size AS class_class_size,
       b.status
-    FROM 
+    FROM
       bookings b
       INNER JOIN members m ON b.member_id = m.id
       INNER JOIN classes c ON b.class_id = c.id
@@ -54,9 +54,8 @@ const updateBooking = async (req, res) => {
   const { id, member_id, class_id, status } = req.body;
   try {
     await pool.query(
-      "UPDATE bookings SET member_id = $1, class_id = 2, status =$3 WHERE id = $4"[
-        (member_id, class_id, status, id)
-      ]
+      "UPDATE bookings SET member_id = $1, class_id = $2, status = $3 WHERE id = $4",
+      [member_id, class_id, status, id]
     );
     res.status(200).json({ message: "Booking updated successfully" });
   } catch (err) {

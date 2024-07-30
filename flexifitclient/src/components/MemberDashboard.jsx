@@ -1,21 +1,28 @@
-import React, { useContext } from "react";
-import UserContext from "../context/user";
+import React, { useState } from "react";
+import UpcomingClasses from "./UpcomingClasses";
+import BookingHistory from "./BookingHistory";
 
-const MemberDashboard = ({ email }) => {
-  const userCtx = useContext(UserContext);
-  const username = email.split("@")[0];
+const MemberDashboard = (props) => {
+  const [view, setView] = useState("upcoming");
+  const username = props.email.split("@")[0];
 
   return (
     <div>
       <nav>
-        <h2>{username}'s Dashboard</h2>
-        <ul>
-          <li>Member's Dashboard</li>
-          <li>Upcoming Classes</li>
-          <li>Booking History</li>
-          <li onClick={() => userCtx.setAccessToken("")}>Log Out</li>
-        </ul>
+        <h1>{username}'s Dashboard</h1>
+        <button onClick={() => setView("upcoming")}>Upcoming Classes</button>
+        <button onClick={() => setView("history")}>Booking History</button>
+        <button
+          onClick={() => {
+            /* Logout */
+          }}
+        >
+          Logout
+        </button>
       </nav>
+      <div>
+        {view === "upcoming" ? <UpcomingClasses /> : <BookingHistory />}
+      </div>
     </div>
   );
 };
