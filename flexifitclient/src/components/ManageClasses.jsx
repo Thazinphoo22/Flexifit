@@ -294,7 +294,7 @@ const ManageClasses = () => {
             <p>Time: {classItem.time}</p>
             <p>Location: {classItem.location}</p>
             <p>Instructor: {classItem.instructor}</p>
-            <p>Session Duration: {classItem.session_duration}</p>
+            <p>Session Duration: {classItem.session_duration} mins </p>
             <p>Class Size: {classItem.class_size}</p>
             <button onClick={() => openEditForm(classItem)}>Edit</button>
             <button onClick={() => handleDeleteClass(classItem.id)}>
