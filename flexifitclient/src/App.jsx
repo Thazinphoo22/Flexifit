@@ -17,6 +17,15 @@ function App() {
   const [memberId, setMemberId] = useState(null);
   const [fitness_studioId, setFitness_studioId] = useState(null);
 
+  const logout = () => {
+    setMemberId(null);
+    setFitness_studioId(null);
+    setRole("");
+    setLoggedInUserRole("");
+    setAccessToken("");
+    setEmail("");
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <UserContext.Provider
@@ -33,6 +42,7 @@ function App() {
           setMemberId,
           fitness_studioId,
           setFitness_studioId,
+          logout,
         }}
       >
         {!accessToken && showLogin && (
