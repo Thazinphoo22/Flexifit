@@ -24,6 +24,7 @@ function App() {
     setLoggedInUserRole("");
     setAccessToken("");
     setEmail("");
+    setShowLogin(true);
   };
 
   return (
@@ -52,10 +53,10 @@ function App() {
           <Registration setShowLogin={setShowLogin} />
         )}
         {loggedInUserRole === "member" && accessToken && (
-          <MemberDashboard email={email} />
+          <MemberDashboard email={email} logout={logout} />
         )}
         {loggedInUserRole === "fitness_studio" && accessToken && (
-          <StudioDashboard email={email} />
+          <StudioDashboard email={email} logout={logout} />
         )}
       </UserContext.Provider>
     </QueryClientProvider>

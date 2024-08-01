@@ -18,6 +18,9 @@ CREATE TABLE classes (
     class_size INT
 );
 
+ALTER TABLE classes ADD COLUMN fitness_studio_id INT;
+ALTER TABLE classes ADD FOREIGN KEY (fitness_studio_id) REFERENCES fitness_studios(id) ON DELETE CASCADE;
+
 CREATE TABLE members (
     id SERIAL PRIMARY KEY,
     name VARCHAR(20) NOT NULL,

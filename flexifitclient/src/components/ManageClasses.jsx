@@ -136,8 +136,11 @@ const ManageClasses = () => {
         undefined,
         userCtx.accessToken
       );
-      console.log("Fetched classes:", data);
-      setClasses(data);
+      const filteredClasses = data.filter(
+        (classItem) => classItem.fitness_studio_id === userCtx.fitness_studioId
+      );
+      console.log("Fetched classes:", filteredClasses);
+      setClasses(filteredClasses);
     } catch (error) {
       console.error("Error fetching classes:", error.message);
     }
@@ -150,7 +153,16 @@ const ManageClasses = () => {
   const handleAddClass = async (e) => {
     e.preventDefault();
     try {
-      await usingFetch("/api/classes", "PUT", newClass, userCtx.accessToken);
+      const newClassData = {
+        ...newClass,
+        fitness_studio_id: userCtx.fitness_studioId,
+      };
+      await usingFetch(
+        "/api/classes",
+        "PUT",
+        newClassData,
+        userCtx.accessToken
+      );
       alert("Class added successfully!");
       fetchClasses();
       setNewClass({
@@ -180,10 +192,14 @@ const ManageClasses = () => {
   const handleUpdateClass = async (e) => {
     e.preventDefault();
     try {
+      const updatedClassData = {
+        ...editClass,
+        fitness_studio_id: userCtx.fitness_studioId,
+      };
       await usingFetch(
         "/api/classes",
         "PATCH",
-        { id: editClass.id, ...editClass },
+        { id: editClass.id, ...updatedClassData },
         userCtx.accessToken
       );
       alert("Class updated successfully!");

@@ -46,21 +46,6 @@ const UpcomingClasses = () => {
     }
   };
 
-  // const handleBookClass = async (memberId, classId) => {
-  //   console.log(memberId);
-  //   try {
-  //     await usingFetch(
-  //       "/api/bookings",
-  //       "PUT",
-  //       { member_id: memberId, class_id: classId },
-  //       userCtx.accessToken
-  //     );
-  //     alert("Class booked successfully!");
-  //     fetchAllClasses();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   const handleBookClass = async (classId) => {
     const memberId = userCtx.memberId;
     if (!memberId) {
@@ -75,7 +60,7 @@ const UpcomingClasses = () => {
         userCtx.accessToken
       );
       alert("Class booked successfully!");
-      fetchAllClasses(); // Fetch updated class list
+      fetchAllClasses();
     } catch (error) {
       console.error(error);
     }
