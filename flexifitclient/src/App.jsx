@@ -18,8 +18,6 @@ function App() {
   const [fitness_studioId, setFitness_studioId] = useState(null);
 
   const logout = () => {
-    window.localStorage.removeItem("access");
-    window.localStorage.removeItem("refresh");
     setMemberId(null);
     setFitness_studioId(null);
     setRole("");
