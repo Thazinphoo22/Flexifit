@@ -1,12 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import styles from "./UpcomingClasses.module.css";
 
 const UpcomingClasses = () => {
   const usingFetch = useFetch();
   const [classes, setClasses] = useState([]);
   const [location, setLocation] = useState("");
   const userCtx = useContext(UserContext);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
 
   const fetchAllClasses = async () => {
     try {
@@ -67,9 +73,9 @@ const UpcomingClasses = () => {
   };
 
   return (
-    <div>
-      <h2>Upcoming Classes</h2>
-      <div>
+    <div className={styles.container}>
+      <h2 className={styles.header}>Upcoming Classes</h2>
+      <div className={styles.searchContainer}>
         <label>
           Location:
           <input
@@ -82,24 +88,31 @@ const UpcomingClasses = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
       <div>
-        <button onClick={fetchAllClasses}>Show All</button>
+        <button className={styles.showAllButton} onClick={fetchAllClasses}>
+          Show All
+        </button>
       </div>
 
       {classes.length === 0 ? (
-        <p>No upcoming classes found.</p>
+        <p className={styles.noClassesMessage}>No upcoming classes found.</p>
       ) : (
-        <div>
+        <div className={styles.classList}>
           {classes.map((cls) => (
-            <div key={cls.id}>
+            <div key={cls.id} className={styles.classCard}>
               <h3>{cls.name}</h3>
               <p>Description: {cls.description}</p>
-              <p>Date: {cls.date}</p>
+              <p>Date: {formatDate(cls.date)}</p>
               <p>Time: {cls.time}</p>
               <p>Location: {cls.location}</p>
               <p>Instructor: {cls.instructor}</p>
-              <p>Duration: {cls.session_duration}</p>
+              <p>Duration: {cls.session_duration} mins</p>
               <p>Class Size: {cls.class_size}</p>
-              <button onClick={() => handleBookClass(cls.id)}>Book Now</button>
+              <button
+                className={styles.bookButton}
+                onClick={() => handleBookClass(cls.id)}
+              >
+                Book Now
+              </button>
             </div>
           ))}
         </div>

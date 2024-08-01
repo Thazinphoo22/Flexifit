@@ -1,11 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import styles from "./BookingHistory.module.css";
 
 const BookingHistory = () => {
   const usingFetch = useFetch();
   const [bookings, setBookings] = useState([]);
   const userCtx = useContext(UserContext);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
 
   const fetchBookings = async () => {
     try {
@@ -39,9 +45,9 @@ const BookingHistory = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Booking History</h2>
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Class</th>
@@ -58,14 +64,17 @@ const BookingHistory = () => {
           {bookings.map((booking) => (
             <tr key={booking.id}>
               <td>{booking.class_name}</td>
-              <td>{booking.class_date}</td>
+              <td>{formatDate(booking.class_date)}</td>
               <td>{booking.class_time}</td>
               <td>{booking.class_location}</td>
               <td>{booking.class_instructor}</td>
-              <td>{booking.class_session_duration}</td>
+              <td>{booking.class_session_duration} mins</td>
               <td>{booking.status}</td>
               <td>
-                <button onClick={() => handleDeleteBooking(booking.id)}>
+                <button
+                  className={styles.button}
+                  onClick={() => handleDeleteBooking(booking.id)}
+                >
                   Delete
                 </button>
               </td>

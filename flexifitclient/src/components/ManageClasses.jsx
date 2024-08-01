@@ -11,9 +11,9 @@ const OverLay = ({
   setEditClass,
 }) => {
   return (
-    <div className={styles.backdrop}>
-      <div className={styles.modal}>
-        <h5 className={styles.textCenter}>Edit Class</h5>
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
+        <h5 className={styles.modalTitle}>Edit Class</h5>
         <form onSubmit={handleUpdateClass}>
           <div className={styles.row}>
             <div className="col-md-3">Name</div>
@@ -22,7 +22,7 @@ const OverLay = ({
               name="name"
               value={editClass.name}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -32,7 +32,7 @@ const OverLay = ({
               name="description"
               value={editClass.description}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -42,7 +42,7 @@ const OverLay = ({
               name="date"
               value={editClass.date}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -52,7 +52,7 @@ const OverLay = ({
               name="time"
               value={editClass.time}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -62,7 +62,7 @@ const OverLay = ({
               name="location"
               value={editClass.location}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -72,7 +72,7 @@ const OverLay = ({
               name="instructor"
               value={editClass.instructor}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -82,7 +82,7 @@ const OverLay = ({
               name="session_duration"
               value={editClass.session_duration}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
           <div className={styles.row}>
@@ -92,14 +92,15 @@ const OverLay = ({
               name="class_size"
               value={editClass.class_size}
               onChange={handleEditClassChange}
-              className={styles.input}
+              className={styles.modalInput}
             />
           </div>
-          <div className={styles.buttonRow}>
+          <div className={styles.modalButtonRow}>
             <button type="submit" className={styles.update}>
               Update Class
             </button>
             <button
+              type="button"
               className={styles.cancel}
               onClick={() => setEditClass(null)}
             >
@@ -127,6 +128,11 @@ const ManageClasses = () => {
     session_duration: "",
     class_size: "",
   });
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
 
   const fetchClasses = async () => {
     try {
@@ -220,116 +226,162 @@ const ManageClasses = () => {
   };
 
   return (
-    <div>
-      <h2>Manage Classes</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Manage Your Classes</h2>
       <form onSubmit={handleAddClass}>
-        <label>
-          Name:
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Name</label>
           <input
             type="text"
+            name="name"
             value={newClass.name}
             onChange={(e) => setNewClass({ ...newClass, name: e.target.value })}
+            className={styles.input}
           />
-        </label>
-        <label>
-          Description:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Description</label>
           <input
             type="text"
+            name="description"
             value={newClass.description}
             onChange={(e) =>
               setNewClass({ ...newClass, description: e.target.value })
             }
+            className={styles.input}
           />
-        </label>
-        <label>
-          Date:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Date</label>
           <input
             type="date"
+            name="date"
             value={newClass.date}
             onChange={(e) => setNewClass({ ...newClass, date: e.target.value })}
+            className={styles.input}
           />
-        </label>
-        <label>
-          Time:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Time</label>
           <input
             type="time"
+            name="time"
             value={newClass.time}
             onChange={(e) => setNewClass({ ...newClass, time: e.target.value })}
+            className={styles.input}
           />
-        </label>
-        <label>
-          Location:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Location</label>
           <input
             type="text"
+            name="location"
             value={newClass.location}
             onChange={(e) =>
               setNewClass({ ...newClass, location: e.target.value })
             }
+            className={styles.input}
           />
-        </label>
-        <label>
-          Instructor:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Instructor</label>
           <input
             type="text"
+            name="instructor"
             value={newClass.instructor}
             onChange={(e) =>
               setNewClass({ ...newClass, instructor: e.target.value })
             }
+            className={styles.input}
           />
-        </label>
-        <label>
-          Session Duration:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Session Duration</label>
           <input
             type="text"
+            name="session_duration"
             value={newClass.session_duration}
             onChange={(e) =>
               setNewClass({ ...newClass, session_duration: e.target.value })
             }
+            className={styles.input}
           />
-        </label>
-        <label>
-          Class Size:
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Class Size</label>
           <input
             type="text"
+            name="class_size"
             value={newClass.class_size}
             onChange={(e) =>
               setNewClass({ ...newClass, class_size: e.target.value })
             }
+            className={styles.input}
           />
-        </label>
-        <button type="submit">Add Class</button>
+        </div>
+        <button type="submit" className={styles.button}>
+          Add Class
+        </button>
       </form>
 
-      <h3>Existing Classes</h3>
-      <ul>
+      <ul className={styles.list}>
         {classes.map((classItem) => (
-          <li key={classItem.id}>
-            <h4>{classItem.name}</h4>
-            <p>Description: {classItem.description}</p>
-            <p>Date: {classItem.date}</p>
-            <p>Time: {classItem.time}</p>
-            <p>Location: {classItem.location}</p>
-            <p>Instructor: {classItem.instructor}</p>
-            <p>Session Duration: {classItem.session_duration} mins </p>
-            <p>Class Size: {classItem.class_size}</p>
-            <button onClick={() => openEditForm(classItem)}>Edit</button>
-            <button onClick={() => handleDeleteClass(classItem.id)}>
-              Delete
-            </button>
+          <li key={classItem.id} className={styles.listItem}>
+            <h3 className={styles.itemTitle}>{classItem.name}</h3>
+            <div className={styles.itemDetails}>
+              <div className={styles.row}>
+                <div className="col-md-3">Description</div>
+                <div>{classItem.description}</div>
+              </div>
+              <div className={styles.row}>
+                <div className="col-md-3">Date</div>
+                <div>{formatDate(classItem.date)}</div>
+              </div>
+              <div className={styles.row}>
+                <div className="col-md-3">Time</div>
+                <div>{classItem.time}</div>
+              </div>
+              <div className={styles.row}>
+                <div className="col-md-3">Location</div>
+                <div>{classItem.location}</div>
+              </div>
+              <div className={styles.row}>
+                <div className="col-md-3">Instructor</div>
+                <div>{classItem.instructor}</div>
+              </div>
+              <div className={styles.row}>
+                <div className="col-md-3">Session Duration</div>
+                <div>{classItem.session_duration}</div>
+              </div>
+              <div className={styles.row}>
+                <div className="col-md-3">Class Size</div>
+                <div>{classItem.class_size}</div>
+              </div>
+              <button
+                className={`${styles.button} ${styles.update}`}
+                onClick={() => openEditForm(classItem)}
+              >
+                Edit
+              </button>
+              <button
+                className={`${styles.button} ${styles.cancel}`}
+                onClick={() => handleDeleteClass(classItem.id)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
 
-      {editClass &&
-        ReactDOM.createPortal(
-          <OverLay
-            editClass={editClass}
-            handleEditClassChange={handleEditClassChange}
-            handleUpdateClass={handleUpdateClass}
-            setEditClass={setEditClass}
-          />,
-          document.querySelector("#modal-root")
-        )}
+      {editClass && (
+        <OverLay
+          editClass={editClass}
+          handleEditClassChange={handleEditClassChange}
+          handleUpdateClass={handleUpdateClass}
+          setEditClass={setEditClass}
+        />
+      )}
     </div>
   );
 };

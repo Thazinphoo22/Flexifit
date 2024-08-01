@@ -1,0 +1,48 @@
+.container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.nav {
+  background-color: #e9e8f5;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #aab7ff;
+}
+
+.nav button {
+  background-color: #aab7ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.nav button:hover {
+  background-color: #8a9eff;
+}
+
+.logoutButton {
+  background-color: #dc3545;
+  margin-left: 20px;
+}
+
+.logoutButton:hover {
+  background-color: #c82333;
+}
+
+.viewContainer {
+  margin-top: 20px;
+}

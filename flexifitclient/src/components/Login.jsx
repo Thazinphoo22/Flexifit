@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import { jwtDecode } from "jwt-decode";
+import styles from "./Login.module.css";
 
 const Login = (props) => {
   const usingFetch = useFetch();
@@ -46,36 +47,50 @@ const Login = (props) => {
   }, [email]);
 
   return (
-    <div>
-      <h1>FlexiFit</h1>
-      {isError && <p>{error}</p>}
+    <div className={styles.container}>
+      <h1 className={styles.title}>FlexiFit</h1>
+      {isError && <p className={styles.error}>{error}</p>}
       <div>
-        <label>
-          Role:
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="member">Member</option>
-            <option value="fitness_studio">Fitness Studio</option>
-          </select>
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button onClick={refetch}>Login</button>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Role:
+            <select
+              className={styles.select}
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="member">Member</option>
+              <option value="fitness_studio">Fitness Studio</option>
+            </select>
+          </label>
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Email:
+            <input
+              className={styles.input}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Password:
+            <input
+              className={styles.input}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+        </div>
+        <button className={styles.button} onClick={refetch}>
+          Login
+        </button>
       </div>
-      <button onClick={() => props.setShowLogin(false)}>
+      <button className={styles.link} onClick={() => props.setShowLogin(false)}>
         Not have an account yet? Register
       </button>
     </div>

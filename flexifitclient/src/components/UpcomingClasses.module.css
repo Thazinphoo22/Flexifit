@@ -1,0 +1,100 @@
+.container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #aab7ff;
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+}
+
+.searchContainer label {
+  margin-right: 10px;
+}
+
+.searchContainer input {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.searchContainer button {
+  background-color: #aab7ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.searchContainer button:hover {
+  background-color: #8a9eff;
+}
+
+.showAllButton {
+  background-color: #d1a7f2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.showAllButton:hover {
+  background-color: #b77af7;
+}
+
+.classList {
+  margin-top: 20px;
+}
+
+.classCard {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+}
+
+.classCard h3 {
+  margin-top: 0;
+  color: #aab7ff;
+}
+
+.classCard p {
+  margin: 5px 0;
+}
+
+.bookButton {
+  background-color: #aab7ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bookButton:hover {
+  background-color: #8a9eff;
+}
+
+.noClassesMessage {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
