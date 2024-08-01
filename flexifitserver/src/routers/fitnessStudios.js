@@ -8,15 +8,42 @@ const {
   deleteFitnessStudio,
 } = require("../controllers/fitnessStudios");
 const {
-  validateRegistrationData,
-  validateLoginData,
-} = require("../validators/auth");
+  validateCreateFitnessStudio,
+  validateDeleteFitnessStudio,
+  validateUpdateFitnessStudio,
+  validategetFitnessStudioById,
+} = require("../validators/fitnessStudios");
+const checkErrors = require("../validators/checkErrors");
 const { auth } = require("../middleware/auth");
 
 router.get("/fitness_studios", auth, getFitnessStudios);
-router.get("/fitness_studios/:id", auth, getFitnessStudioById);
-router.put("/fitness_studios", auth, createFitnessStudio);
-router.patch("/fitness_studios", auth, updateFitnessStudio);
-router.delete("/fitness_studios", auth, deleteFitnessStudio);
+router.get(
+  "/fitness_studios/:id",
+  auth,
+  validategetFitnessStudioById,
+  checkErrors,
+  getFitnessStudioById
+);
+router.put(
+  "/fitness_studios",
+  auth,
+  validateCreateFitnessStudio,
+  checkErrors,
+  createFitnessStudio
+);
+router.patch(
+  "/fitness_studios",
+  auth,
+  validateUpdateFitnessStudio,
+  checkErrors,
+  updateFitnessStudio
+);
+router.delete(
+  "/fitness_studios",
+  auth,
+  validateDeleteFitnessStudio,
+  checkErrors,
+  deleteFitnessStudio
+);
 
 module.exports = router;

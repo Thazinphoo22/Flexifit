@@ -5,11 +5,11 @@ const {
   validateRegistrationData,
   validateLoginData,
 } = require("../validators/auth");
-const checkErrorsLogin = require("../validators/checkErrorsLogin");
+const checkErrors = require("../validators/checkErrors");
 const { auth } = require("../middleware/auth");
 
-router.put("/register", validateRegistrationData, checkErrorsLogin, register);
-router.post("/login", validateLoginData, checkErrorsLogin, login);
+router.put("/register", validateRegistrationData, checkErrors, register);
+router.post("/login", validateLoginData, checkErrors, login);
 router.post("/logout", logout);
 
 module.exports = router;

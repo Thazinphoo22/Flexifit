@@ -1,65 +1,81 @@
 const { body } = require("express-validator");
 
-const validateIdInBody = [body("id", "id is required in body").notEmpty()];
+const isValidTime = (value) => {
+  const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/; // Matches HH:mm format
+  return timeRegex.test(value) || value === "";
+};
 
-const validateGetAllClasses = [
-  body("name", "name is required").notEmpty(),
-  body("description", "description is required").notEmpty(),
-  body("date", "date is required").notEmpty().isDate(),
-  body("time", "time is required").notEmpty(),
-  isTime(),
-  body("location", "location is required").notEmpty(),
-  body("instructor", "instructor is required").notEmpty(),
-  body("session_duration", "session_ is required").notEmpty(),
-
-  class_size,
-  fitness_studio_id,
-];
-
-const validateCreateJobData = [
-  body("position", "position is required").notEmpty(),
-  body("position", "must have a length between 1 and 50 characters").isLength({
-    min: 1,
-    max: 50,
-  }),
-  body("description", "description is required").notEmpty(),
-  body(
-    "description",
-    "description must have a length between 1 and 2000 characters"
-  ).isLength({
-    min: 1,
-    max: 2000,
-  }),
-  body("employer", "id is required").isMongoId(),
-];
-
-const validateUpdateJobData = [
-  body("id", "id is required").notEmpty().isMongoId(),
-  body("position", "position is required").optional().notEmpty(),
-  body("description", "must have a length between 1 and 2000 characters")
+const validateCreateClass = [
+  body("name", "Class name is required")
+    .notEmpty()
+    .isString()
+    .isLength({ max: 20 }),
+  body("description", "Description must be a string").optional().isString(),
+  body("date", "Date must be a valid date").optional().isDate(),
+  body("time", "Time must be a valid time").optional().custom(isValidTime),
+  body("location", "Location must be a string")
     .optional()
-    .isLength({
-      min: 1,
-      max: 2000,
-    }),
+    .isString()
+    .isLength({ max: 100 }),
+  body("instructor", "Instructor name must be a string")
+    .optional()
+    .isString()
+    .isLength({ max: 20 }),
+  body("session_duration", "Session duration must be a number")
+    .optional()
+    .isInt({ min: 0 }),
+  body("class_size", "Class size must be a number")
+    .optional()
+    .isInt({ min: 0 }),
+  body("fitness_studio_id", "Fitness studio ID must be an integer")
+    .optional()
+    .isInt(),
 ];
 
-const validatePostEmployerData = [
-  body("name", "name is required").notEmpty(),
-  body("description", "description is required").notEmpty(),
-  body(
-    "description",
-    "description must have a lenght between 1 and 2000 characters"
-  ),
-  body("logo", "logo is required").optional().notEmpty(),
-  body("email", "email is required").isEmail(),
+const validateUpdateClass = [
+  body("id", "Class ID is required").notEmpty().isInt(),
+  body("name", "Class name is required")
+    .notEmpty()
+    .isString()
+    .isLength({ max: 20 }),
+  body("description", "Description must be a string").optional().isString(),
+  body("date", "Date must be a valid date").optional().isDate(),
+  body("time", "Time must be a valid time").optional().custom(isValidTime),
+  body("location", "Location must be a string")
+    .optional()
+    .isString()
+    .isLength({ max: 100 }),
+  body("instructor", "Instructor name must be a string")
+    .optional()
+    .isString()
+    .isLength({ max: 20 }),
+  body("session_duration", "Session duration must be a number")
+    .optional()
+    .isInt({ min: 0 }),
+  body("class_size", "Class size must be a number")
+    .optional()
+    .isInt({ min: 0 }),
+  body("fitness_studio_id", "Fitness studio ID must be an integer")
+    .optional()
+    .isInt(),
+];
+
+const validateGetClassById = [
+  body("id", "Class ID is required").notEmpty().isInt(),
+];
+
+const validateDeleteClass = [
+  body("id", "Class ID is required").notEmpty().isInt(),
+];
+
+const validateGetClassByLocation = [
+  body("location", "Location must be a string").notEmpty().isString(),
 ];
 
 module.exports = {
-  validateIdInBody,
-  validateIdInParam,
-  validateGetEmployer,
-  validateCreateJobData,
-  validateUpdateJobData,
-  validatePostEmployerData,
+  validateCreateClass,
+  validateUpdateClass,
+  validateGetClassById,
+  validateGetClassByLocation,
+  validateDeleteClass,
 };

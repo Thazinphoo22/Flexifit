@@ -105,3 +105,9 @@
   font-size: 1.2rem;
   color: #888;
 }
+
+.errorMessage {
+  color: purple;
+  font-size: 1rem;
+  margin-top: 10px;
+}

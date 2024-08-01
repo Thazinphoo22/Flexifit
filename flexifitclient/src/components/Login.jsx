@@ -51,7 +51,6 @@ const Login = (props) => {
   }, [email]);
 
   const handleSubmit = () => {
-    // Reset errors
     setErrors({
       email: "",
       password: "",

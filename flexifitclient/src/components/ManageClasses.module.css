@@ -15,6 +15,8 @@
 
 .formGroup {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .label {
@@ -24,7 +26,7 @@
 }
 
 .input {
-  width: 100%;
+  width: calc(100% - 16px);
   padding: 8px;
   font-size: 1rem;
   border: 1px solid #b897e6;
@@ -93,6 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 
 .modalContent {
@@ -101,6 +104,8 @@
   border-radius: 4px;
   width: 80%;
   max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .modalTitle {
@@ -110,7 +115,7 @@
 }
 
 .modalInput {
-  width: 100%;
+  width: calc(100% - 16px);
   padding: 8px;
   font-size: 1rem;
   border: 1px solid #b897e6;
@@ -122,6 +127,7 @@
 .modalButtonRow {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .update {
@@ -142,7 +148,7 @@
 
 .error {
   color: #ff4c4c;
-  margin-bottom: 15px;
+  margin-top: 5px;
 }
 
 .input:hover,

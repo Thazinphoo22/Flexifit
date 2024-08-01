@@ -8,15 +8,30 @@ const {
   deleteMember,
 } = require("../controllers/members");
 const {
-  validateRegistrationData,
-  validateLoginData,
-} = require("../validators/auth");
+  validateCreateMember,
+  validateUpdateMember,
+  validateDeleteMember,
+  validategetMemberById,
+} = require("../validators/members");
+const checkErrors = require("../validators/checkErrors");
 const { auth } = require("../middleware/auth");
 
 router.get("/members", auth, getMembers);
-router.get("/members/:id", auth, getMemberById);
-router.put("/members", auth, createMember);
-router.patch("/members", auth, updateMember);
-router.delete("/members", auth, deleteMember);
+router.get(
+  "/members/:id",
+  auth,
+  validategetMemberById,
+  checkErrors,
+  getMemberById
+);
+router.put("/members", auth, validateCreateMember, checkErrors, createMember);
+router.patch("/members", auth, validateUpdateMember, checkErrors, updateMember);
+router.delete(
+  "/members",
+  auth,
+  validateDeleteMember,
+  checkErrors,
+  deleteMember
+);
 
 module.exports = router;

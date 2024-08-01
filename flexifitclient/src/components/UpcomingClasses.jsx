@@ -7,6 +7,7 @@ const UpcomingClasses = () => {
   const usingFetch = useFetch();
   const [classes, setClasses] = useState([]);
   const [location, setLocation] = useState("");
+  const [error, setError] = useState("");
   const userCtx = useContext(UserContext);
 
   const formatDate = (dateString) => {
@@ -23,8 +24,10 @@ const UpcomingClasses = () => {
         userCtx.accessToken
       );
       setClasses(data);
+      setError("");
     } catch (error) {
       console.error(error);
+      setError("Failed to fetch classes.");
     }
   };
 
@@ -41,21 +44,27 @@ const UpcomingClasses = () => {
         userCtx.accessToken
       );
       setClasses(data);
+      setError("");
     } catch (error) {
       console.error(error);
+      setError("Failed to fetch classes by location.");
     }
   };
 
   const handleSearch = () => {
-    if (location.trim() !== "") {
-      fetchClassesByLocation(location);
+    if (location.trim() === "") {
+      setError("Location cannot be empty.");
+      return;
     }
+    setError("");
+    fetchClassesByLocation(location);
   };
 
   const handleBookClass = async (classId) => {
     const memberId = userCtx.memberId;
     if (!memberId) {
       console.error("Member ID is not available");
+      setError("You must be logged in to book a class.");
       return;
     }
     try {
@@ -69,6 +78,7 @@ const UpcomingClasses = () => {
       fetchAllClasses();
     } catch (error) {
       console.error(error);
+      setError("Failed to book class.");
     }
   };
 
@@ -87,12 +97,12 @@ const UpcomingClasses = () => {
         </label>
         <button onClick={handleSearch}>Search</button>
       </div>
+      {error && <p className={styles.errorMessage}>{error}</p>}
       <div>
         <button className={styles.showAllButton} onClick={fetchAllClasses}>
           Show All
         </button>
       </div>
-
       {classes.length === 0 ? (
         <p className={styles.noClassesMessage}>No upcoming classes found.</p>
       ) : (
