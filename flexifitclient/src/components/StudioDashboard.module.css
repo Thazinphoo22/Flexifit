@@ -1,25 +1,31 @@
 .container {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f2f2f2;
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/303/93/236/digital-digital-art-artwork-1980s-neon-hd-wallpaper-preview.jpg"); /* Background image */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  min-height: 100vh;
 }
 
 .nav {
-  background-color: #e9e8f5;
-  border-bottom: 1px solid #ddd;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid #444;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .nav h1 {
   margin: 0;
   font-size: 1.5rem;
-  color: #aab7ff;
+  color: #d1a9ff;
 }
 
 .nav button {
-  background-color: #aab7ff;
+  background-color: #6a6aff;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -31,7 +37,7 @@
 }
 
 .nav button:hover {
-  background-color: #8a9eff;
+  background-color: #5a5aff;
 }
 
 .logoutButton {
@@ -45,4 +51,7 @@
 
 .viewContainer {
   margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 20px;
 }

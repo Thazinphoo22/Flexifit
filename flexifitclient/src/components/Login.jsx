@@ -47,52 +47,57 @@ const Login = (props) => {
   }, [email]);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>FlexiFit</h1>
-      {isError && <p className={styles.error}>{error}</p>}
-      <div>
-        <div className={styles.formGroup}>
-          <label className={styles.label}>
-            Role:
-            <select
-              className={styles.select}
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-            >
-              <option value="member">Member</option>
-              <option value="fitness_studio">Fitness Studio</option>
-            </select>
-          </label>
+    <div className={styles["login-background"]}>
+      <div className={styles["login-container"]}>
+        <h1 className={styles.title}>FlexiFit</h1>
+        {isError && <p className={styles.error}>{error}</p>}
+        <div>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              Role:
+              <select
+                className={styles.select}
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="member">Member</option>
+                <option value="fitness_studio">Fitness Studio</option>
+              </select>
+            </label>
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              Email:
+              <input
+                className={styles.input}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
+              Password:
+              <input
+                className={styles.input}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+          </div>
+          <button className={styles.button} onClick={refetch}>
+            Login
+          </button>
         </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label}>
-            Email:
-            <input
-              className={styles.input}
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label}>
-            Password:
-            <input
-              className={styles.input}
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-        </div>
-        <button className={styles.button} onClick={refetch}>
-          Login
+        <button
+          className={styles.link}
+          onClick={() => props.setShowLogin(false)}
+        >
+          Not have an account yet? Register
         </button>
       </div>
-      <button className={styles.link} onClick={() => props.setShowLogin(false)}>
-        Not have an account yet? Register
-      </button>
     </div>
   );
 };

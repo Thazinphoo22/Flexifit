@@ -1,34 +1,40 @@
 .container {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f2f2f2;
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #fff;
 }
 
 .header {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #aab7ff;
+  color: #d1a9ff;
 }
 
 .searchContainer {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .searchContainer label {
   margin-right: 10px;
+  color: #e0e0e0;
 }
 
 .searchContainer input {
-  padding: 5px;
+  padding: 8px;
   margin-right: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 4px;
+  background-color: #333;
+  color: #fff;
 }
 
 .searchContainer button {
-  background-color: #aab7ff;
+  background-color: #6a6aff;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -39,11 +45,11 @@
 }
 
 .searchContainer button:hover {
-  background-color: #8a9eff;
+  background-color: #5a5aff;
 }
 
 .showAllButton {
-  background-color: #d1a7f2;
+  background-color: #5a5aff;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -55,7 +61,7 @@
 }
 
 .showAllButton:hover {
-  background-color: #b77af7;
+  background-color: #4a4aff;
 }
 
 .classList {
@@ -63,24 +69,25 @@
 }
 
 .classCard {
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   border-radius: 4px;
   padding: 15px;
   margin-bottom: 15px;
-  background-color: #ffffff;
+  background-color: #222;
 }
 
 .classCard h3 {
   margin-top: 0;
-  color: #aab7ff;
+  color: #d1a9ff;
 }
 
 .classCard p {
   margin: 5px 0;
+  color: #e0e0e0;
 }
 
 .bookButton {
-  background-color: #aab7ff;
+  background-color: #6a6aff;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -91,10 +98,10 @@
 }
 
 .bookButton:hover {
-  background-color: #8a9eff;
+  background-color: #5a5aff;
 }
 
 .noClassesMessage {
   font-size: 1.2rem;
-  color: #6c757d;
+  color: #888;
 }
