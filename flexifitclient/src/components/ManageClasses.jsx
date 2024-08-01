@@ -305,7 +305,7 @@ const ManageClasses = () => {
         {classes.map((classItem) => (
           <li key={classItem.id}>
             <h4>{classItem.name}</h4>
-            <p>{classItem.description}</p>
+            <p>Description: {classItem.description}</p>
             <p>Date: {classItem.date}</p>
             <p>Time: {classItem.time}</p>
             <p>Location: {classItem.location}</p>

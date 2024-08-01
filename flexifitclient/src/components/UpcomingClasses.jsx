@@ -93,9 +93,8 @@ const UpcomingClasses = () => {
             <div key={cls.id}>
               <h3>{cls.name}</h3>
               <p>Description: {cls.description}</p>
-              <p>
-                {cls.date} at {cls.time}
-              </p>
+              <p>Date: {cls.date}</p>
+              <p>Time: {cls.time}</p>
               <p>Location: {cls.location}</p>
               <p>Instructor: {cls.instructor}</p>
               <p>Duration: {cls.session_duration}</p>
