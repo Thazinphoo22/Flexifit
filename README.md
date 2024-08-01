@@ -14,11 +14,11 @@ Responsive Design: Ensures usability across different devices.
 
 
 # Technologies
-Frontend: React
-Backend: Node.js, Express
-Database: PostgreSQL
-Authentication: JSON Web Tokens (JWT)
-Styling: CSS Modules
+* Frontend: React
+* Backend: Node.js, Express
+* Database: PostgreSQL
+* Authentication: JSON Web Tokens (JWT)
+
 
 
 ***.env***
