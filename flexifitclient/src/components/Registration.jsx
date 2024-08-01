@@ -9,20 +9,68 @@ const Registration = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("member");
+  const [errors, setErrors] = useState({
+    name: "",
+    contact: "",
+    email: "",
+    password: "",
+  });
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    try {
-      await usingFetch("/auth/register", "PUT", {
-        name,
-        contact,
-        email,
-        password,
-        role,
-      });
-      props.setShowLogin(true);
-    } catch (error) {
-      console.error(error.message);
+
+    // Reset errors
+    setErrors({
+      name: "",
+      contact: "",
+      email: "",
+      password: "",
+    });
+
+    let isValid = true;
+    let newErrors = {};
+
+    if (!name) {
+      newErrors.name = "Name is required!";
+      isValid = false;
+    }
+
+    if (!contact) {
+      newErrors.contact = "Contact is required!";
+      isValid = false;
+    }
+
+    if (!email) {
+      newErrors.email = "Email is required!";
+      isValid = false;
+    } else if (!email.includes("@")) {
+      newErrors.email = "Email must be a valid email!";
+      isValid = false;
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required!";
+      isValid = false;
+    } else if (password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters long!";
+      isValid = false;
+    }
+
+    if (isValid) {
+      try {
+        await usingFetch("/auth/register", "PUT", {
+          name,
+          contact,
+          email,
+          password,
+          role,
+        });
+        props.setShowLogin(true);
+      } catch (error) {
+        console.error(error.message);
+      }
+    } else {
+      setErrors(newErrors);
     }
   };
 
@@ -39,6 +87,7 @@ const Registration = (props) => {
               onChange={(e) => setName(e.target.value)}
               className={styles.input}
             />
+            {errors.name && <span className={styles.error}>{errors.name}</span>}
           </label>
           <label className={styles.label}>
             Contact:
@@ -48,6 +97,9 @@ const Registration = (props) => {
               onChange={(e) => setContact(e.target.value)}
               className={styles.input}
             />
+            {errors.contact && (
+              <span className={styles.error}>{errors.contact}</span>
+            )}
           </label>
           <label className={styles.label}>
             Email:
@@ -57,6 +109,9 @@ const Registration = (props) => {
               onChange={(e) => setEmail(e.target.value)}
               className={styles.input}
             />
+            {errors.email && (
+              <span className={styles.error}>{errors.email}</span>
+            )}
           </label>
           <label className={styles.label}>
             Password:
@@ -66,6 +121,9 @@ const Registration = (props) => {
               onChange={(e) => setPassword(e.target.value)}
               className={styles.input}
             />
+            {errors.password && (
+              <span className={styles.error}>{errors.password}</span>
+            )}
           </label>
           <label className={styles.label}>
             Role:

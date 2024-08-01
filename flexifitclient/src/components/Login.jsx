@@ -11,6 +11,10 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("member");
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
   const { isError, error, data, refetch } = useQuery({
     queryKey: ["login"],
@@ -46,6 +50,39 @@ const Login = (props) => {
     props.setEmail(email);
   }, [email]);
 
+  const handleSubmit = () => {
+    // Reset errors
+    setErrors({
+      email: "",
+      password: "",
+    });
+
+    let isValid = true;
+    let newErrors = {};
+
+    if (!email) {
+      newErrors.email = "Email is required!";
+      isValid = false;
+    } else if (!email.includes("@")) {
+      newErrors.email = "Email must be a valid email!";
+      isValid = false;
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required!";
+      isValid = false;
+    } else if (password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters long!";
+      isValid = false;
+    }
+
+    if (isValid) {
+      refetch();
+    } else {
+      setErrors(newErrors);
+    }
+  };
+
   return (
     <div className={styles["login-background"]}>
       <div className={styles["login-container"]}>
@@ -75,6 +112,7 @@ const Login = (props) => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
           </div>
           <div className={styles.formGroup}>
             <label className={styles.label}>
@@ -86,8 +124,11 @@ const Login = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
+            {errors.password && (
+              <p className={styles.error}>{errors.password}</p>
+            )}
           </div>
-          <button className={styles.button} onClick={refetch}>
+          <button className={styles.button} onClick={handleSubmit}>
             Login
           </button>
         </div>
