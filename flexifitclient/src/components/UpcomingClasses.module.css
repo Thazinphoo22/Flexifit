@@ -34,7 +34,7 @@
 }
 
 .searchContainer button {
-  background-color: #6a6aff;
+  background-color: #8a2be2;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -45,11 +45,11 @@
 }
 
 .searchContainer button:hover {
-  background-color: #5a5aff;
+  background-color: #6a1b9a;
 }
 
 .showAllButton {
-  background-color: #5a5aff;
+  background-color: #8a2be2;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -61,7 +61,7 @@
 }
 
 .showAllButton:hover {
-  background-color: #4a4aff;
+  background-color: #6a1b9a;
 }
 
 .classList {
@@ -87,7 +87,7 @@
 }
 
 .bookButton {
-  background-color: #6a6aff;
+  background-color: #8a2be2;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -98,7 +98,7 @@
 }
 
 .bookButton:hover {
-  background-color: #5a5aff;
+  background-color: #6a1b9a;
 }
 
 .noClassesMessage {

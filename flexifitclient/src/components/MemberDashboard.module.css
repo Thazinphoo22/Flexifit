@@ -33,7 +33,7 @@ body {
 }
 
 .nav button {
-  background-color: #6a6aff;
+  background-color: #8a2be2;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -45,15 +45,7 @@ body {
 }
 
 .nav button:hover {
-  background-color: #5a5aff;
-}
-
-.logoutButton {
-  background-color: #dc3545;
-}
-
-.logoutButton:hover {
-  background-color: #c82333;
+  background-color: #6a1b9a;
 }
 
 .content {
