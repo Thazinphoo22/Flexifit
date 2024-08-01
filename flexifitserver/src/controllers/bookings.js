@@ -4,20 +4,21 @@ const getBookings = async (req, res) => {
   try {
     const result = await pool.query(`
     SELECT
-      b.id,
-      m.name AS member_name,
-      c.name AS class_name,
-      c.date AS class_date,
-      c.time AS class_time,
-      c.location AS class_location,
-      c.instructor AS class_instructor,
-      c.session_duration AS class_session_duration,
-      c.class_size AS class_class_size,
-      b.status
-    FROM
-      bookings b
-      INNER JOIN members m ON b.member_id = m.id
-      INNER JOIN classes c ON b.class_id = c.id
+    b.id,
+    b.member_id,           
+    m.name AS member_name,
+    c.name AS class_name,
+    c.date AS class_date,
+    c.time AS class_time,
+    c.location AS class_location,
+    c.instructor AS class_instructor,
+    c.session_duration AS class_session_duration,
+    c.class_size AS class_class_size,
+    b.status
+  FROM
+    bookings b
+    INNER JOIN members m ON b.member_id = m.id
+    INNER JOIN classes c ON b.class_id = c.id
   `);
     res.json(result.rows);
   } catch (err) {

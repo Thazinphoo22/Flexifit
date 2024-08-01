@@ -15,15 +15,19 @@ const BookingHistory = () => {
         undefined,
         userCtx.accessToken
       );
-      setBookings(data);
+      const filteredBookings = data.filter(
+        (booking) => booking.member_id === userCtx.memberId
+      );
+      console.log("Fetched bookings:", filteredBookings);
+      setBookings(filteredBookings);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching bookings:", error.message);
     }
   };
 
   useEffect(() => {
     fetchBookings();
-  }, [usingFetch]);
+  }, []);
 
   const handleDeleteBooking = async (id) => {
     try {
