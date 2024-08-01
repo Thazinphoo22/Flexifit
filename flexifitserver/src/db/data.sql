@@ -53,18 +53,19 @@ INSERT INTO bookings(id, member_id, class_id, status ) VALUES
 (5, 23, 27,'booked');
 
 
-SELECT 
-  b.id, 
-  m.name AS member_name, 
-  c.name AS class_name, 
-  c.date AS class_date, 
-  c.time AS class_time, 
-  c.location AS class_location,
-  c.instructor AS class_instructor,
-  c.session_duration AS class_session_duration,
-  c.class_size AS class_class_size,
-  b.status
-FROM 
-  bookings b
-  INNER JOIN members m ON b.member_id = m.id
-  INNER JOIN classes c ON b.class_id = c.id;
+ SELECT
+      b.id,
+      b.member_id,           
+      m.name AS member_name,
+      c.name AS class_name,
+      c.date AS class_date,
+      c.time AS class_time,
+      c.location AS class_location,
+      c.instructor AS class_instructor,
+      c.session_duration AS class_session_duration,
+      c.class_size AS class_class_size,
+      b.status
+    FROM
+      bookings b
+      INNER JOIN members m ON b.member_id = m.id
+      INNER JOIN classes c ON b.class_id = c.id
