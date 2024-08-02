@@ -41,13 +41,7 @@ router.put(
   checkErrors,
   createClass
 );
-router.patch(
-  "/classes",
-  fitness_studioAuth,
-  validateUpdateClass,
-  checkErrors,
-  updateClass
-);
+router.patch("/classes", fitness_studioAuth, validateUpdateClass, updateClass);
 router.delete(
   "/classes",
   fitness_studioAuth,
