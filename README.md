@@ -47,9 +47,9 @@ Studio's Dashboard with Class Management
 
 
 # Next Steps
-Display the list of members who have booked a particular class.
-To notify members when a class becomes available or is fully booked.
-Implement payment processing for paid classes or membership fees.
+* Display the list of members who have booked a particular class.
+* To notify members when a class becomes available or is fully booked.
+* Implement payment processing for paid classes or membership fees.
 
 ***.env***
 
